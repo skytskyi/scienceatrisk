@@ -1,0 +1,371 @@
+/*----------------------------------*/
+/*  Local redesign overrides          */
+/*  (loaded after style.min.css)      */
+/*----------------------------------*/
+
+/* ---------- Header: logo ---------- */
+.header__logo {
+    position: relative;
+    z-index: 1000;
+    flex-shrink: 0;
+    font-family: "Noto Serif";
+    font-weight: 400;
+    letter-spacing: -0.02em;
+    line-height: 1;
+    white-space: nowrap;
+}
+
+.header__logo a {
+    color: #000000;
+}
+
+.header__logo-mark {
+    font-size: 1.22222rem;
+}
+
+.header__logo-full {
+    font-size: 1.11111rem;
+}
+
+@media (min-width: 768px) {
+    .header__logo-mark {
+        font-size: 1.44444rem;
+    }
+
+    .header__logo-full {
+        font-size: 1.33333rem;
+    }
+}
+
+/* "!!!" only on the first screen, full logo on every other screen.
+   Both marks share one grid cell, so the logo slot always keeps the width of
+   the full logo and the menu doesn't shift when they swap. */
+.header__logo {
+    display: grid;
+    align-items: center;
+}
+
+/* Sequential dissolve: the outgoing mark fades out first, then the incoming one
+   fades in, so they never overlap. */
+.header__logo-mark,
+.header__logo-full {
+    grid-area: 1 / 1;
+    opacity: 1;
+    visibility: visible;
+    transition: opacity 0.3s ease 0.3s, visibility 0s linear 0.3s, color 0.3s linear;
+}
+
+.header--top .header__logo-full,
+.header:not(.header--top) .header__logo-mark {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity 0.3s ease, visibility 0s linear 0.3s, color 0.3s linear;
+}
+
+/* menu + language colour follow the section with a soft fade, like the original header */
+.header__nav-link,
+.header__lang-btn,
+.header__lang-sep {
+    transition: color 0.3s linear, background-size 0.3s;
+}
+
+/* ---------- Header: language switch ---------- */
+.header__lang {
+    display: flex;
+    align-items: center;
+    gap: 0.44444rem;
+    margin-left: auto;
+    margin-right: 1.33333rem;
+    font-size: 0.88889rem;
+    letter-spacing: -0.03em;
+}
+
+.header__lang-sep {
+    color: #000000;
+}
+
+.header .header__lang .header__lang-btn--link {
+    color: #8a8a8a;
+}
+
+.header .header__lang .header__lang-btn--link:hover {
+    color: #000000;
+}
+
+@media (max-width: 1199.98px) {
+    .header__logo {
+        order: 1;
+    }
+
+    .header__lang {
+        order: 2;
+    }
+
+    .header__menu {
+        order: 3;
+    }
+
+    /* keep the language switch readable over the open mobile menu */
+    .header__bg.active .header__lang-sep,
+    .header__bg.active .header__lang-btn--active {
+        color: #fff;
+    }
+}
+
+/* ---------- Header: always-visible menu on desktop ---------- */
+@media (min-width: 1200px) {
+    .header__wrapper {
+        gap: 2rem;
+    }
+
+    .header__menu {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        min-width: 0;
+    }
+
+    .header__lang {
+        margin-left: 0;
+        margin-right: 0;
+        flex-shrink: 0;
+    }
+
+    .header__burger,
+    .header__close,
+    .header__bg.active .header__close {
+        display: none;
+    }
+
+    .header__nav,
+    .header__bg.active .header__nav {
+        position: static;
+        display: block;
+        visibility: visible;
+        opacity: 1;
+        width: auto;
+        height: auto;
+        padding: 0;
+        background: none;
+        background-color: transparent;
+    }
+
+    .header__nav-list {
+        display: flex;
+        align-items: center;
+        gap: 1.33333rem;
+        min-width: 0;
+        padding-right: 0;
+        overflow: visible;
+    }
+
+    .header__nav-item + .header__nav-item {
+        margin-top: 0;
+    }
+
+    .header .header__nav-link {
+        font-size: 0.83333rem;
+        line-height: 1.22222rem;
+        white-space: nowrap;
+        color: #000000;
+        background-image: linear-gradient(#000000);
+    }
+
+    /* social links stay in the mobile menu only */
+    .header__list-link {
+        display: none;
+    }
+
+    /* header colour follows the section underneath (see changeHeaderColor in the bundle) */
+    .header.white .header__logo a,
+    .header.white .header__nav-link,
+    .header.white .header__lang-sep,
+    .header.white .header__lang-btn--active {
+        color: #fff;
+    }
+
+    .header.white .header__nav-link {
+        background-image: linear-gradient(#fff);
+    }
+
+    .header.black .header__logo a,
+    .header.black .header__nav-link,
+    .header.black .header__lang-sep,
+    .header.black .header__lang-btn--active {
+        color: #000000;
+    }
+
+    .header.black .header__nav-link {
+        background-image: linear-gradient(#000000);
+    }
+}
+
+/* 1200–1439px: tighter menu so logo, 7 links and the language switch fit in one row */
+@media (min-width: 1200px) and (max-width: 1439.98px) {
+    .header__nav-list {
+        gap: 0.88889rem;
+    }
+
+    .header .header__nav-link {
+        font-size: 0.77778rem;
+    }
+}
+
+@media (min-width: 1440px) {
+    .header__nav-list {
+        gap: 2rem;
+    }
+
+    .header .header__nav-link {
+        font-size: 0.88889rem;
+    }
+}
+
+/* ---------- Hero: big logo + stories ---------- */
+.hero__logo {
+    margin: 0;
+    line-height: 0;
+    font-size: inherit;
+}
+
+.hero--stories .hero__text {
+    margin-top: 0.88889rem;
+    margin-bottom: 0;
+}
+
+@media (min-width: 1024px) {
+    .hero--stories {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start;
+        min-height: 100vh;
+        padding-top: 5.5rem;
+        padding-bottom: 1.33333rem;
+    }
+
+    .hero--stories .hero__text {
+        margin-top: 1.11111rem;
+    }
+}
+
+.stories--hero {
+    background-color: #fff;
+    padding-top: 2.22222rem;
+}
+
+/* keep the slider in the same centred column as .wrapper on very wide screens */
+@media (min-width: 1280px) {
+    .stories--hero .stories__top {
+        max-width: 1744px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+}
+
+@media (min-width: 1024px) {
+    /* logo + subtitle stay at the top, stories sit at the bottom of the screen */
+    .stories--hero {
+        margin-top: auto;
+        padding-top: 2.22222rem;
+    }
+}
+
+@media (min-width: 1440px) {
+    .stories--hero {
+        padding-top: 3.33333rem;
+    }
+}
+
+/* align slides with .wrapper (16px, 40px from 1280) */
+.stories--hero .stories__slide {
+    margin-left: 16px;
+    margin-right: 16px;
+}
+
+@media (min-width: 1280px) {
+    .stories--hero .stories__slide {
+        margin-left: 40px;
+        margin-right: 40px;
+    }
+}
+
+.stories--hero .stories__img img {
+    object-fit: cover;
+}
+
+@media (min-width: 768px) {
+    .stories--hero .stories__img {
+        flex-shrink: 0;
+        width: 46%;
+        max-width: none;
+        padding-top: 0;
+        height: clamp(220px, calc(100vh - 26rem), 520px);
+    }
+
+    /* every slide is exactly as tall as its image, so long stories don't stretch the slider */
+    .stories--hero .stories__slide {
+        height: clamp(220px, calc(100vh - 26rem), 520px);
+        overflow: hidden;
+    }
+
+    .stories--hero .stories__info {
+        max-width: 24rem;
+        margin-left: 2.33333rem;
+        flex-shrink: 1;
+    }
+
+    .stories--hero .stories__title,
+    .stories--hero .stories__text {
+        display: -webkit-box;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+
+    .stories--hero .stories__title {
+        -webkit-line-clamp: 3;
+    }
+
+    .stories--hero .stories__text {
+        -webkit-line-clamp: 4;
+    }
+}
+
+.stories--hero .stories__suptitle,
+.stories--hero .stories__title,
+.stories--hero .stories__text,
+.stories--hero .stories__nav-btn,
+.stories--hero .stories__other {
+    color: #000000;
+}
+
+.stories--hero .stories__title {
+    font-size: 1.55556rem;
+    line-height: 1.22;
+}
+
+@media (min-width: 1280px) {
+    .stories--hero .stories__title {
+        font-size: 1.77778rem;
+    }
+}
+
+.stories--hero .stories__navigation {
+    margin-top: 1.77778rem;
+}
+
+@media (min-width: 768px) {
+    .stories--hero .stories__navigation {
+        border-bottom-color: #000000;
+    }
+}
+
+@media (min-width: 1440px) {
+    .stories--hero .stories__navigation {
+        margin-top: 2.22222rem;
+    }
+}
+
+.stories--hero .stories__wrapper {
+    padding-bottom: 0;
+}
