@@ -295,24 +295,29 @@
 }
 
 @media (min-width: 768px) {
-    .stories--hero .stories__img {
-        flex-shrink: 0;
-        width: 46%;
-        max-width: none;
-        padding-top: 0;
-        height: clamp(220px, calc(100vh - 26rem), 520px);
-    }
-
-    /* every slide is exactly as tall as its image, so long stories don't stretch the slider */
+    /* 12-column grid: photo spans columns 1–6, text starts at column 7.
+       Every slide is exactly as tall as its image, so long stories don't stretch the slider. */
     .stories--hero .stories__slide {
+        display: grid;
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        column-gap: 1.33333rem;
+        align-items: end;
         height: clamp(220px, calc(100vh - 26rem), 520px);
         overflow: hidden;
     }
 
+    .stories--hero .stories__img {
+        grid-column: 1 / 7;
+        width: 100%;
+        max-width: none;
+        height: 100%;
+        padding-top: 0;
+    }
+
     .stories--hero .stories__info {
+        grid-column: 7 / 13;
         max-width: 24rem;
-        margin-left: 2.33333rem;
-        flex-shrink: 1;
+        margin-left: 0;
     }
 
     .stories--hero .stories__title,
