@@ -374,3 +374,58 @@
 .stories--hero .stories__wrapper {
     padding-bottom: 0;
 }
+
+/* ---------- Research (former White Papers) cards ---------- */
+.list-card__format {
+    flex-shrink: 0;
+    margin-left: 1.33333rem;
+    font-family: "e-Ukraine";
+    font-weight: 300;
+    font-size: 0.88889rem;
+    line-height: 1.22222rem;
+    color: #000000;
+}
+
+.list-card--paper .list-card__footer {
+    align-items: flex-end;
+    gap: 1.33333rem;
+}
+
+.list-card__btns {
+    display: none;
+    flex-shrink: 0;
+    gap: 0.66667rem;
+}
+
+@media (min-width: 768px) {
+    .list-card__btns {
+        display: flex;
+    }
+}
+
+.list-card--paper .list-card__btn.btn--bordered a {
+    color: #000000;
+}
+
+.list-card--paper .list-card__btn.btn--bordered:hover a {
+    color: #fff;
+}
+
+/* research titles are long: let them use the whole column, slightly smaller type */
+.list-card--paper .list-card__title {
+    max-width: none;
+}
+
+@media (min-width: 1024px) {
+    .list-card--paper .list-card__title {
+        font-size: 1.33333rem;
+        line-height: 1.77778rem;
+    }
+}
+
+@media (min-width: 1440px) {
+    .list-card--paper .list-card__title {
+        font-size: 1.55556rem;
+        line-height: 2rem;
+    }
+}
