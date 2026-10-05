@@ -429,3 +429,14 @@
         line-height: 2rem;
     }
 }
+
+/* research buttons: same size as "More details" in Assistance in reconstruction
+   (padding lives on the <a>, not on the button wrapper; don't stretch to each other) */
+.list-card__btns {
+    align-items: center;
+}
+
+.list-card--paper .list-card__btn.btn--bordered,
+.list-card--paper .list-card__btn.btn--black {
+    padding: 0;
+}
