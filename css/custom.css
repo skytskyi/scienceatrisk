@@ -440,3 +440,9 @@
 .list-card--paper .list-card__btn.btn--black {
     padding: 0;
 }
+
+/* .btn has min-width: 150px — "Download" is shorter, so it got empty space on the right.
+   Let research buttons hug their label (same side padding as "More details"). */
+.list-card--paper .list-card__btn {
+    min-width: 0;
+}
