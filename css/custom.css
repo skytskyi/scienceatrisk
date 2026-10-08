@@ -314,24 +314,10 @@
         padding-top: 0;
     }
 
-    /* text: columns 7–10, sitting on the bottom edge of the photo */
     .stories--hero .stories__info {
-        grid-column: 7 / 11;
-        max-width: none;
+        grid-column: 7 / 13;
+        max-width: 24rem;
         margin-left: 0;
-    }
-
-    .stories--hero .stories__text {
-        margin-bottom: 0;
-    }
-
-    /* "Read": right edge of the grid, bottom-aligned (like the Research buttons) */
-    .stories--hero .stories__btn {
-        grid-column: 11 / 13;
-        justify-self: end;
-        align-self: end;
-        width: auto;
-        min-width: 0;
     }
 
     .stories--hero .stories__title,
@@ -343,38 +329,11 @@
 
     .stories--hero .stories__title {
         -webkit-line-clamp: 3;
-        /* room for the 2px underline of the last visible line (overflow is hidden) */
-        padding-bottom: 4px;
     }
 
     .stories--hero .stories__text {
         -webkit-line-clamp: 4;
     }
-}
-
-/* whole story block is clickable, like a Research card */
-.stories--hero .stories__slide {
-    position: relative;
-}
-
-.stories__link-wrap {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-}
-
-.stories--hero .stories__btn {
-    z-index: 2;
-}
-
-/* title underline: on every line, whenever the story block is hovered */
-.stories--hero .stories__title span {
-    -webkit-box-decoration-break: clone;
-    box-decoration-break: clone;
-}
-
-.stories--hero .stories__slide:hover .stories__title span {
-    background-size: 100% 2px;
 }
 
 .stories--hero .stories__suptitle,
@@ -400,39 +359,9 @@
     margin-top: 1.77778rem;
 }
 
-/* the dividing line sits above the photo now, not under Back / Other stories / Next */
 @media (min-width: 768px) {
     .stories--hero .stories__navigation {
-        border-bottom: none;
-        padding-bottom: 0;
-    }
-}
-
-.stories__rule {
-    border-top: 2px solid #000000;
-    margin-bottom: 1.33333rem;
-}
-
-@media (min-width: 1440px) {
-    .stories__rule {
-        margin-bottom: 1.77778rem;
-    }
-}
-
-/* "Read" appears only while the story block is hovered (like the Research cards).
-   Touch screens have no hover, so there the button stays visible. */
-@media (hover: hover) and (min-width: 768px) {
-    .stories--hero .stories__btn {
-        visibility: hidden;
-        opacity: 0;
-        transition: opacity 0.3s ease-in, visibility 0s linear 0.3s;
-    }
-
-    .stories--hero .stories__slide:hover .stories__btn,
-    .stories--hero .stories__slide:focus-within .stories__btn {
-        visibility: visible;
-        opacity: 1;
-        transition: opacity 0.3s ease-in, visibility 0s;
+        border-bottom-color: #000000;
     }
 }
 
