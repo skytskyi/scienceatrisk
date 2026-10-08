@@ -359,9 +359,39 @@
     margin-top: 1.77778rem;
 }
 
+/* the dividing line sits above the photo now, not under Back / Other stories / Next */
 @media (min-width: 768px) {
     .stories--hero .stories__navigation {
-        border-bottom-color: #000000;
+        border-bottom: none;
+        padding-bottom: 0;
+    }
+}
+
+.stories__rule {
+    border-top: 2px solid #000000;
+    margin-bottom: 1.33333rem;
+}
+
+@media (min-width: 1440px) {
+    .stories__rule {
+        margin-bottom: 1.77778rem;
+    }
+}
+
+/* "Read" appears only while the story block is hovered (like the Research cards).
+   Touch screens have no hover, so there the button stays visible. */
+@media (hover: hover) and (min-width: 768px) {
+    .stories--hero .stories__btn {
+        visibility: hidden;
+        opacity: 0;
+        transition: opacity 0.3s ease-in, visibility 0s linear 0.3s;
+    }
+
+    .stories--hero .stories__slide:hover .stories__btn,
+    .stories--hero .stories__slide:focus-within .stories__btn {
+        visibility: visible;
+        opacity: 1;
+        transition: opacity 0.3s ease-in, visibility 0s;
     }
 }
 
