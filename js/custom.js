@@ -33,3 +33,34 @@
 
     update();
 })();
+
+// "Popular requests" on the search screen: shift the whole block right so the
+// longest row of tags ends exactly at the right edge of the content.
+// A wrapping flex row never shrinks to its widest line, so this can't be done
+// with CSS alone; we measure the tags and move the block with a transform
+// (a transform doesn't change the width, so the tags don't re-wrap).
+(function () {
+    var block = document.querySelector('.popular-requests');
+    var wrapper = block && block.querySelector('.popular-requests__wrapper');
+    if (!block || !wrapper) return;
+
+    var align = function () {
+        block.style.transform = '';
+        if (window.innerWidth < 768) return;
+
+        var tags = wrapper.children;
+        if (!tags.length) return;
+
+        var maxRight = 0;
+        for (var i = 0; i < tags.length; i++) {
+            maxRight = Math.max(maxRight, tags[i].getBoundingClientRect().right);
+        }
+        var shift = wrapper.getBoundingClientRect().right - maxRight;
+        if (shift > 0) block.style.transform = 'translateX(' + shift + 'px)';
+    };
+
+    window.addEventListener('resize', align);
+    window.addEventListener('load', align);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(align);
+    align();
+})();
