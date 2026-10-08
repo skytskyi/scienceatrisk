@@ -314,10 +314,24 @@
         padding-top: 0;
     }
 
+    /* text: columns 7–10, sitting on the bottom edge of the photo */
     .stories--hero .stories__info {
-        grid-column: 7 / 13;
-        max-width: 24rem;
+        grid-column: 7 / 11;
+        max-width: none;
         margin-left: 0;
+    }
+
+    .stories--hero .stories__text {
+        margin-bottom: 0;
+    }
+
+    /* "Read": right edge of the grid, bottom-aligned (like the Research buttons) */
+    .stories--hero .stories__btn {
+        grid-column: 11 / 13;
+        justify-self: end;
+        align-self: end;
+        width: auto;
+        min-width: 0;
     }
 
     .stories--hero .stories__title,
@@ -329,11 +343,38 @@
 
     .stories--hero .stories__title {
         -webkit-line-clamp: 3;
+        /* room for the 2px underline of the last visible line (overflow is hidden) */
+        padding-bottom: 4px;
     }
 
     .stories--hero .stories__text {
         -webkit-line-clamp: 4;
     }
+}
+
+/* whole story block is clickable, like a Research card */
+.stories--hero .stories__slide {
+    position: relative;
+}
+
+.stories__link-wrap {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+}
+
+.stories--hero .stories__btn {
+    z-index: 2;
+}
+
+/* title underline: on every line, whenever the story block is hovered */
+.stories--hero .stories__title span {
+    -webkit-box-decoration-break: clone;
+    box-decoration-break: clone;
+}
+
+.stories--hero .stories__slide:hover .stories__title span {
+    background-size: 100% 2px;
 }
 
 .stories--hero .stories__suptitle,
